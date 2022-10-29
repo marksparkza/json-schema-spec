@@ -26,6 +26,14 @@
                 "type": "boolean"
             }
         },
+        "$annotation": {
+            "$dynamicRef": "#meta",
+            "default": false
+        },
+        "$error": {
+            "$dynamicRef": "#meta",
+            "default": { "type": "string" }
+        },
         "$comment": {
             "type": "string"
         },

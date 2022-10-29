@@ -9,7 +9,15 @@
     "title": "Unevaluated applicator vocabulary meta-schema",
     "type": ["object", "boolean"],
     "properties": {
-        "unevaluatedItems": { "$dynamicRef": "#meta" },
-        "unevaluatedProperties": { "$dynamicRef": "#meta" }
+        "unevaluatedItems": {
+            "$dynamicRef": "#meta",
+            "$annotation": { "const": true },
+            "$error": { "$ref": "#/$defs/nonNegativeIntegerArray" }
+        },
+        "unevaluatedProperties": {
+            "$dynamicRef": "#meta",
+            "$annotation": { "$ref": "#/$defs/stringArray" },
+            "$error": { "$ref": "#/$defs/stringArray" }
+        }
     }
 }

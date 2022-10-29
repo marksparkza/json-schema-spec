@@ -11,27 +11,35 @@
     "type": ["object", "boolean"],
     "properties": {
         "title": {
-            "type": "string"
+            "type": "string",
+            "$annotation": true
         },
         "description": {
-            "type": "string"
+            "type": "string",
+            "$annotation": true
         },
-        "default": true,
+        "default": {
+            "$annotation": true
+        },
         "deprecated": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "$annotation": true
         },
         "readOnly": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "$annotation": true
         },
         "writeOnly": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "$annotation": true
         },
         "examples": {
             "type": "array",
-            "items": true
+            "items": true,
+            "$annotation": true
         }
     }
 }

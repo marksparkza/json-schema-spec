@@ -9,30 +9,56 @@
     "title": "Applicator vocabulary meta-schema",
     "type": ["object", "boolean"],
     "properties": {
-        "prefixItems": { "$ref": "#/$defs/schemaArray" },
-        "items": { "$dynamicRef": "#meta" },
+        "prefixItems": {
+            "$ref": "#/$defs/schemaArray",
+            "$annotation": {
+                "anyOf": [
+                    { "const": true },
+                    { "$ref": "#/$defs/nonNegativeInteger" }
+                ]
+            },
+            "$error": { "$ref": "#/$defs/nonNegativeIntegerArray" }
+        },
+        "items": {
+            "$dynamicRef": "#meta",
+            "$annotation": { "const": true },
+            "$error": { "$ref": "#/$defs/nonNegativeIntegerArray" }
+        },
         "maxContains": { "$ref": "#/$defs/nonNegativeInteger" },
         "minContains": {
             "$ref": "#/$defs/nonNegativeInteger",
             "default": 1
         },
-        "contains": { "$dynamicRef": "#meta" },
-        "additionalProperties": { "$dynamicRef": "#meta" },
+        "contains": {
+            "$dynamicRef": "#meta",
+            "$annotation": { "$ref": "#/$defs/nonNegativeIntegerArray" }
+        },
+        "additionalProperties": {
+            "$dynamicRef": "#meta",
+            "$annotation": { "$ref": "#/$defs/stringArray" },
+            "$error": { "$ref": "#/$defs/stringArray" }
+        },
         "properties": {
             "type": "object",
             "additionalProperties": { "$dynamicRef": "#meta" },
-            "default": {}
+            "default": {},
+            "$annotation": { "$ref": "#/$defs/stringArray" },
+            "$error": { "$ref": "#/$defs/stringArray" }
         },
         "patternProperties": {
             "type": "object",
             "additionalProperties": { "$dynamicRef": "#meta" },
             "propertyNames": { "format": "regex" },
-            "default": {}
+            "default": {},
+            "$annotation": { "$ref": "#/$defs/stringArray" },
+            "$error": { "$ref": "#/$defs/stringArray" }
         },
         "dependentSchemas": {
             "type": "object",
             "additionalProperties": { "$dynamicRef": "#meta" },
-            "default": {}
+            "default": {},
+            "$annotation": { "$ref": "#/$defs/stringArray" },
+            "$error": { "$ref": "#/$defs/stringArray" }
         },
         "propertyDependencies": {
             "type": "object",
@@ -43,7 +69,10 @@
             },
             "default": {}
         },
-        "propertyNames": { "$dynamicRef": "#meta" },
+        "propertyNames": {
+            "$dynamicRef": "#meta",
+            "$error": { "$ref": "#/$defs/stringArray" }
+        },
         "if": { "$dynamicRef": "#meta" },
         "then": { "$dynamicRef": "#meta" },
         "else": { "$dynamicRef": "#meta" },
@@ -57,10 +86,22 @@
             "type": "integer",
             "minimum": 0
         },
+        "nonNegativeIntegerArray": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/nonNegativeInteger" },
+            "uniqueItems": true,
+            "default": []
+        },
         "schemaArray": {
             "type": "array",
             "minItems": 1,
             "items": { "$dynamicRef": "#meta" }
+        },
+        "stringArray": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true,
+            "default": []
         }
     }
 }
