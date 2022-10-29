@@ -9,6 +9,9 @@
     "title": "Format vocabulary meta-schema for assertion results",
     "type": ["object", "boolean"],
     "properties": {
-        "format": { "type": "string" }
+        "format": {
+            "type": "string",
+            "$annotation": true
+        }
     }
 }
