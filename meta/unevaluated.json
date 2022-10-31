@@ -19,5 +19,23 @@
             "$annotation": { "$ref": "#/$defs/stringArray" },
             "$error": { "$ref": "#/$defs/stringArray" }
         }
+    },
+    "$defs": {
+        "nonNegativeInteger": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "nonNegativeIntegerArray": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/nonNegativeInteger" },
+            "uniqueItems": true,
+            "default": []
+        },
+        "stringArray": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true,
+            "default": []
+        }
     }
 }
