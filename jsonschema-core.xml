@@ -1391,48 +1391,50 @@
                 </section>
                 <section title='The "$annotation" Keyword'>
                     <t>
-                        The "$annotation" keyword may be used in vocabulary meta-schemas to
-                        describe the structure of any annotation produced by a keyword.
+                        An annotation is the output produced by a keyword when it evaluates a
+                        JSON instance successfully. When instance evaluation fails, a keyword
+                        does not produce any annotation output. The structure of a keyword's
+                        annotation is described by its annotation schema, which forms part of
+                        the definition of a keyword in a vocabulary meta-schema.
                     </t>
                     <t>
-                        If present, this keyword's value MUST be a valid JSON Schema.
+                        In a vocabulary meta-schema, "$annotation" is used within a keyword
+                        schema to declare the keyword's annotation schema. If not present, its
+                        meaning is the same as if present with a value of false, which implies
+                        that the keyword does not produce any annotation output.
                     </t>
                     <t>
-                        If "$annotation" is present with a value of true, then for any
-                        successful validation a keyword MUST produce an annotation consisting
-                        of the keyword's value.
-                    </t>
-                    <t>
-                        Otherwise, any annotation produced by a keyword MUST validate successfully
-                        against its "$annotation" schema.
-                    </t>
-                    <t>
-                        Omitting this keyword has the same behavior as a value of false,
-                        which indicates that a keyword MUST NOT produce any annotations.
+                        In a regular schema, "$annotation" represents a reference to a keyword's
+                        annotation schema. Validation succeeds if the instance - an annotation -
+                        is valid against the annotation schema of the keyword that produced it.
+                        The value for "$annotation" is a relative JSON pointer referencing a
+                        location within the instance relative to the current instance node.
+                        The value of the instance at this location must be a keyword name,
+                        which identifies the keyword that produced the annotation.
                     </t>
                 </section>
                 <section title='The "$error" Keyword'>
                     <t>
-                        The "$error" keyword may be used in vocabulary meta-schemas to
-                        describe the structure of any error produced by a keyword.
+                        An error is the output produced by a keyword when evaluation of a
+                        JSON instance fails. When instance evaluation succeeds, a keyword
+                        does not produce any error output. The structure of a keyword's
+                        error is described by its error schema, which forms part of
+                        the definition of a keyword in a vocabulary meta-schema.
                     </t>
                     <t>
-                        If present, this keyword's value MUST be a valid JSON Schema.
+                        In a vocabulary meta-schema, "$error" is used within a keyword
+                        schema to declare the keyword's error schema. If not present, its
+                        meaning is the same as that of a schema that validates a string value,
+                        which implies that the keyword produces an error message on failure.
                     </t>
                     <t>
-                        If "$error" is present with a value of true, then for any
-                        unsuccessful validation a keyword MUST produce an error consisting
-                        of the keyword's value.
-                    </t>
-                    <t>
-                        Otherwise, any error produced by a keyword MUST validate successfully
-                        against its "$error" schema.
-                    </t>
-                    <t>
-                        Omitting this keyword has the same behavior as a schema that
-                        validates a string value, indicating that a keyword MUST
-                        produce an error string for any unsuccessful validation. The
-                        format of such an error string is implementation-defined.
+                        In a regular schema, "$error" represents a reference to a keyword's
+                        error schema. Validation succeeds if the instance - an error -
+                        is valid against the error schema of the keyword that produced it.
+                        The value for "$error" is a relative JSON pointer referencing a
+                        location within the instance relative to the current instance node.
+                        The value of the instance at this location must be a keyword name,
+                        which identifies the keyword that produced the error.
                     </t>
                 </section>
             </section>

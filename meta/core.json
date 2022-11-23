@@ -27,12 +27,32 @@
             }
         },
         "$annotation": {
-            "$dynamicRef": "#meta",
-            "default": false
+            "anyOf": [
+                {
+                    "$dynamicRef": "#meta",
+                    "default": false,
+                    "$comment": "Annotation schema"
+                },
+                {
+                    "type": "string",
+                    "format": "relative-json-pointer",
+                    "$comment": "Annotation validator"
+                }
+            ]
         },
         "$error": {
-            "$dynamicRef": "#meta",
-            "default": { "type": "string" }
+            "anyOf": [
+                {
+                    "$dynamicRef": "#meta",
+                    "default": { "type": "string" },
+                    "$comment": "Error schema"
+                },
+                {
+                    "type": "string",
+                    "format": "relative-json-pointer",
+                    "$comment": "Error validator"
+                }
+            ]
         },
         "$comment": {
             "type": "string"
