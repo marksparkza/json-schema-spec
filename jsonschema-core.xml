@@ -1429,7 +1429,7 @@
                     </t>
                     <t>
                         In a regular schema, "$error" represents a reference to a keyword's
-                        error schema. Validation succeeds if the instance - an error -
+                        error schema. Validation succeeds if the instance - an error object -
                         is valid against the error schema of the keyword that produced it.
                         The value for "$error" is a relative JSON pointer referencing a
                         location within the instance relative to the current instance node.
